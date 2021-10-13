@@ -13,7 +13,7 @@ void v_alloc_table_add_5(int table_size){
     for (int i = 0; i < table_size; ++i) {
         cout<<*(table+i)<<"\n";
     }
-    delete table;
+    delete[] table;
 
 }
 int main() {
