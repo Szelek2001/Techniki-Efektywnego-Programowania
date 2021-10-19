@@ -11,22 +11,35 @@ class CTable {
 public:
     CTable();
 
-    CTable(std::__cxx11::basic_string<char> sName, int iTableLen);
+    CTable(string , int );
 
     CTable(CTable &pcOthers);
 
      ~CTable();
-
-    void vSetName(string sName);
-    static const string DEFAULT_NAME;
+     static const string DEFAULT_NAME;
     static const int DEFAULT_LENGTH = 5;
     static const int DEFAULT_VALUE = -1;
 
 private:
-    std::string s_name;
+    string s_name;
     int i_table_length;
     int *pi_table;
+public:
+    bool bSetNewSize(int iTableLen);
 
+    CTable* pcClone() {
+        CTable* newCTable;
+        newCTable = new CTable(*this);
+
+        return newCTable;
+    }
+
+
+
+
+    int *getTable() const;
+
+    void setName(string sName);
 };
 
 
