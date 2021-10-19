@@ -2,9 +2,10 @@
 
 #ifndef TEP_CTABLE_H
 #define TEP_CTABLE_H
-
-
 #include <string>
+
+using namespace std;
+
 
 class CTable {
 public:
@@ -14,10 +15,10 @@ public:
 
     CTable(CTable &pcOthers);
 
-    virtual ~CTable();
+     ~CTable();
 
-    void vSetName(std::string sName);
-    static const std::string DEFAULT_NAME;
+    void vSetName(string sName);
+    static const string DEFAULT_NAME;
     static const int DEFAULT_LENGTH = 5;
     static const int DEFAULT_VALUE = -1;
 

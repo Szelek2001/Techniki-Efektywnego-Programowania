@@ -3,14 +3,12 @@
 using namespace std;
 
 const string CTable::DEFAULT_NAME= "default";
-const int CTable::DEFAULT_LENGTH ;
-const int CTable::DEFAULT_VALUE  ;
 
 CTable::CTable() {
     s_name = DEFAULT_NAME;
     i_table_length = DEFAULT_LENGTH;
     pi_table = new int[i_table_length];
-    cout << "bezp: " << s_name << endl;
+    cout << "bezp: " << s_name << "\n";
 }
 
 CTable::CTable(string sName, int iTableLen) {

@@ -1,3 +1,6 @@
+#include "Zad2i3.h"
+
+
 #include <iostream>
 
 using namespace std;
@@ -17,9 +20,9 @@ bool b_alloc_table_2_dim(int ***piTable, int iSizeX, int iSizeY) {
 
 }
 
-bool b_dealloc_table_2_dim(int **piTable, int iSizeX, int iSizeY) {
+bool b_dealloc_table_2_dim(int **piTable, int iSizeX) {
 
-    if(iSizeX<=0||iSizeY<=0)
+    if(iSizeX<=0)
         return false;
 
 
@@ -35,6 +38,6 @@ int main() {
 
     int **pi_table;
     b_alloc_table_2_dim(&pi_table, 5, 3);
-    b_dealloc_table_2_dim(pi_table, 5, 3);
+    b_dealloc_table_2_dim(pi_table, 5);
     return 0;
 }
