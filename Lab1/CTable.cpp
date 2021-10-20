@@ -38,6 +38,9 @@ void CTable::setName(string sName)
     s_name = sName;
 }
 
+const string &CTable::getSName() const {
+    return s_name;
+}
 
 bool CTable::bSetNewSize(int iTableLen){
     if (i_table_length <= 0) return false;
@@ -53,6 +56,10 @@ bool CTable::bSetNewSize(int iTableLen){
     return true;
 }
 
+int CTable::getITableLength() const {
+    return i_table_length;
+}
+
 
 int* CTable::getTable() const
 {
@@ -65,3 +72,23 @@ void modTabPointer(CTable* cTab, int newSize) {
 void modTabNoPointer(CTable cTab, int newSize) {
     cTab.bSetNewSize(newSize);
 }
+
+int main(){
+    CTable* ctable, * ctable2, * ctable3, * ctable4;
+    ctable = new CTable();
+    ctable2 = new CTable("abc", 10);
+    ctable3 = new CTable(*ctable2);
+    ctable4 = (*ctable).pcClone();
+    cout << ctable4->getSName() << endl;
+    modTabNoPointer(*ctable2, 20);
+    cout << ctable2->getITableLength() << endl;
+
+    modTabPointer(ctable2, 20);
+    cout << ctable2->getITableLength() << endl;
+
+    delete ctable;
+    delete ctable2;
+    delete ctable3;
+
+
+};

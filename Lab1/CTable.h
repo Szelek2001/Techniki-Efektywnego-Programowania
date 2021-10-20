@@ -40,6 +40,10 @@ public:
     int *getTable() const;
 
     void setName(string sName);
+
+    const string &getSName() const;
+
+    int getITableLength() const;
 };
 
 
