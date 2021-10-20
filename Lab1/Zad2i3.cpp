@@ -37,7 +37,7 @@ bool b_dealloc_table_2_dim(int **piTable, int iSizeX) {
 int main() {
 
     int **pi_table;
-    b_alloc_table_2_dim(&pi_table, 5, 3);
-    b_dealloc_table_2_dim(pi_table, 5);
+    cout<< b_alloc_table_2_dim(&pi_table, 5, 3);
+    cout<< b_dealloc_table_2_dim(pi_table, 5);
     return 0;
 }
