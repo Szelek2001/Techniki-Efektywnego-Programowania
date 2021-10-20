@@ -11,7 +11,7 @@ public:
 
     CTable(string , int );
 
-    CTable(CTable &pcOthers);
+    CTable(const CTable &pcOthers);
 
      ~CTable();
      static const string DEFAULT_NAME;

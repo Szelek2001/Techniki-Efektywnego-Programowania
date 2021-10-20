@@ -1,3 +1,4 @@
+#include <iostream>
 #include "CTable.h"
 #include <iostream>
 
@@ -20,7 +21,7 @@ CTable::CTable(string sName, int iTableLen) {
 
 }
 
-CTable::CTable(CTable &pcOther) {
+CTable::CTable(const CTable &pcOther) {
     i_table_length = pcOther.i_table_length;
     pi_table = new int[i_table_length];
     s_name = pcOther.s_name + "_copy";
@@ -86,7 +87,7 @@ void vStaticAllocation() {
 }
 
 void vDynamicAllocation() {
-    auto *cTableDynamic = new CTable();
+    CTable *cTableDynamic = new CTable();
     delete cTableDynamic;
 }
 
