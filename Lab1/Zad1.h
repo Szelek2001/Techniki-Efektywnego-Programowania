@@ -3,5 +3,7 @@
 
 
 const int DEFAULT_VALUE = 5;
+
 bool v_alloc_table_add_5(int tablesize);
+
 #endif //TEP_ZAD1_H

@@ -7,12 +7,12 @@ using namespace std;
 
 bool b_alloc_table_2_dim(int ***piTable, int iSizeX, int iSizeY) {
 
-    if(iSizeX<=0||iSizeY<=0)
+    if (iSizeX <= 0 || iSizeY <= 0)
         return false;
-    *piTable = new int*[iSizeX];
+    *piTable = new int *[iSizeX];
 
     for (int i = 0; i < iSizeX; ++i) {
-        *(*piTable+i) = new int[iSizeY];
+        *(*piTable + i) = new int[iSizeY];
 
     }
 
@@ -22,7 +22,7 @@ bool b_alloc_table_2_dim(int ***piTable, int iSizeX, int iSizeY) {
 
 bool b_dealloc_table_2_dim(int **piTable, int iSizeX) {
 
-    if(iSizeX<=0)
+    if (iSizeX <= 0)
         return false;
 
 
@@ -37,7 +37,7 @@ bool b_dealloc_table_2_dim(int **piTable, int iSizeX) {
 int main() {
 
     int **pi_table;
-    cout<< b_alloc_table_2_dim(&pi_table, 5, 3);
-    cout<< b_dealloc_table_2_dim(pi_table, 5);
+    cout << b_alloc_table_2_dim(&pi_table, 5, 3);
+    cout << b_dealloc_table_2_dim(pi_table, 5);
     return 0;
 }

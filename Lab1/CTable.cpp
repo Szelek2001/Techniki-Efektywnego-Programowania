@@ -81,7 +81,7 @@ void vModTabNoPointer(CTable cTab, int inewSize) {
 }
 
 void vStaticAllocation() {
-    CTable cTableStatic("romb",10);
+    CTable cTableStatic("romb", 10);
     cTableStatic.bSetNewSize(20);
 
 }
