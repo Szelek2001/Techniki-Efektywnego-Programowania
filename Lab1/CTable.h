@@ -9,14 +9,13 @@ class CTable {
 public:
     CTable();
 
-    CTable(string , int );
+    CTable(string s_name, int i_table_length);
 
     CTable(const CTable &pcOthers);
 
      ~CTable();
      static const string DEFAULT_NAME;
     static const int DEFAULT_LENGTH = 5;
-    static const int DEFAULT_VALUE = -1;
     bool bSetNewSize(int iTableLen);
 
 
@@ -40,8 +39,8 @@ private:
     int *pi_table;
 
 };
-    void vModTabNoPointer(CTable,int);
-    void vModTabPointer(CTable*, int );
+    void vModTabNoPointer(CTable cTab,int inewSize);
+    void vModTabPointer(CTable* cTab, int );
     void vStaticAllocation();
     void vDynamicAllocation();
 
