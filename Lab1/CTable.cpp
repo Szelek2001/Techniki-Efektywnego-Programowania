@@ -1,6 +1,6 @@
 #include <iostream>
 #include "CTable.h"
-#include <iostream>
+
 
 using namespace std;
 
@@ -91,25 +91,3 @@ void vDynamicAllocation() {
     delete cTableDynamic;
 }
 
-int main() {
-    CTable *ctable, *ctable2, *ctable3, *ctable4;
-    ctable = new CTable();
-    ctable2 = new CTable("rafal", 10);
-    ctable3 = new CTable(*ctable2);
-    ctable4 = (*ctable).pcClone();
-    cout << ctable4->getSName() << endl;
-
-    vModTabNoPointer(*ctable2, 50);
-    cout << ctable2->getITableLength() << endl;
-    vModTabPointer(ctable2, 50);
-    cout << ctable2->getITableLength() << endl;
-
-    delete ctable;
-    delete ctable2;
-    delete ctable3;
-    delete ctable4;
-
-    vStaticAllocation();
-    vDynamicAllocation();
-
-}
