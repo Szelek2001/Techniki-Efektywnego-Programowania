@@ -46,7 +46,7 @@ const string &CTable::getSName() const {
 }
 
 bool CTable::bSetNewSize(int iTableLen) {
-    if (i_table_length <= 0) return false;
+    if (iTableLen <= 0) return false;
 
     if (i_table_length < iTableLen) {
         int *tempTable = new int[iTableLen];
@@ -72,12 +72,12 @@ int *CTable::getTable() const {
 }
 
 
-void vModTabPointer(CTable *cTab, int newSize) {
-    cTab->bSetNewSize(newSize);
+void vModTabPointer(CTable *cTab, int inewSize) {
+    cTab->bSetNewSize(inewSize);
 }
 
-void vModTabNoPointer(CTable cTab, int newSize) {
-    cTab.bSetNewSize(newSize);
+void vModTabNoPointer(CTable cTab, int inewSize) {
+    cTab.bSetNewSize(inewSize);
 }
 
 void vStaticAllocation() {
