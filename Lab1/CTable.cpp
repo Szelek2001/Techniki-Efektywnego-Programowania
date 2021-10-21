@@ -14,6 +14,8 @@ CTable::CTable() {
 }
 
 CTable::CTable(string sName, int iTableLen) {
+    if(iTableLen<0)
+        iTableLen = DEFAULT_LENGTH;
     s_name = sName;
     i_table_length = iTableLen;
     pi_table = new int[i_table_length];
