@@ -53,31 +53,11 @@ bool b_dealloc_table_2_dim(int **piTable, int iSizeX) {
 
 int main() {
 
-    v_alloc_table_add_5(5);
+    CTable c_tab_0, c_tab_1;
+    c_tab_0.bSetNewSize(6);
+    c_tab_1.bSetNewSize(4);
+    c_tab_0 = c_tab_1;
 
-    int **pi_table;
-    cout << b_alloc_table_2_dim(&pi_table, 5, 3);
-    cout << b_dealloc_table_2_dim(pi_table, 5);
-
-    CTable *ctable, *ctable2, *ctable3, *ctable4;
-    ctable = new CTable();
-    ctable2 = new CTable("rafal", 10);
-    ctable3 = new CTable(*ctable2);
-    ctable4 = (*ctable).pcClone();
-    cout << ctable4->getSName() << endl;
-
-    vModTabNoPointer(*ctable2, 50);
-    cout << ctable2->getITableLength() << endl;
-    vModTabPointer(ctable2, 50);
-    cout << ctable2->getITableLength() << endl;
-
-    delete ctable;
-    delete ctable2;
-    delete ctable3;
-    delete ctable4;
-
-    vStaticAllocation();
-    vDynamicAllocation();
     return 0;
 
 }

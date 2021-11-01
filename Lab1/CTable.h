@@ -1,6 +1,5 @@
 #ifndef TEP_CTABLE_H
 #define TEP_CTABLE_H
-
 #include <string>
 
 using namespace std;
@@ -8,6 +7,7 @@ using namespace std;
 
 class CTable {
 public:
+    void operator=(const CTable& other);
     CTable();
 
     CTable(string s_name, int i_table_length);
@@ -37,6 +37,7 @@ public:
 
     int getITableLength() const;
 
+
 private:
     string s_name;
     int i_table_length;
@@ -51,5 +52,6 @@ void vModTabPointer(CTable *cTab, int);
 void vStaticAllocation();
 
 void vDynamicAllocation();
+
 
 #endif //TEP_CTABLE_H
