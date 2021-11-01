@@ -57,7 +57,6 @@ bool CTable::bSetNewSize(int iTableLen) {
         }
         delete[] pi_table;
         pi_table = tempTable;
-        delete[] tempTable;
     }
     i_table_length = iTableLen;
 
