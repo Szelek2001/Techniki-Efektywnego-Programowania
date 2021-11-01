@@ -14,7 +14,7 @@ CTable::CTable() {
 }
 
 CTable::CTable(string sName, int iTableLen) {
-    if(iTableLen<0)
+    if (iTableLen < 0)
         iTableLen = DEFAULT_LENGTH;
     s_name = sName;
     i_table_length = iTableLen;
@@ -92,37 +92,29 @@ void vDynamicAllocation() {
     delete cTableDynamic;
 }
 
-void CTable::operator=(CTable &pcOther)
-{
+void CTable::operator=(CTable &pcOther) {
     pi_table = pcOther.pi_table;
     i_table_length = pcOther.i_table_length;
 }
-void CTable::vPrint()
-{
+
+void CTable::vPrint() {
     cout << "\n";
-    for (int i = 0; i < i_table_length; i++)
-    {
+    for (int i = 0; i < i_table_length; i++) {
         cout << pi_table[i];
         cout << " ";
     }
 }
 
-void CTable::vSetValueAt(int iOffset, int iNewVal)
-{
+void CTable::vSetValueAt(int iOffset, int iNewVal) {
     // Sprawdzenie prawidłowości parametru
-    if (iOffset < 0)
-    {
+    if (iOffset < 0) {
         cout << "\nWartosc parametru iOffset nieprawidlowa.\n";
-    }
-    else
-    {
+    } else {
         pi_table[iOffset] = iNewVal;
     }
-}
+};;
 
-;;
-
-CTable CTable::operator+(CTable& other) {
+CTable CTable::operator+(CTable &other) {
     CTable newTable(this->s_name + " + " + other.s_name, this->i_table_length + other.i_table_length);
 
     for (int i = 0; i < this->i_table_length; i++) {
@@ -137,7 +129,7 @@ CTable CTable::operator+(CTable& other) {
 }
 
 
-int main(){
+int main() {
 
     CTable c_tab_0, c_tab_1;
     c_tab_0.bSetNewSize(1);
@@ -150,7 +142,7 @@ int main(){
     c_tab_1.vSetValueAt(3, 15);
 
 
-    (c_tab_0+c_tab_1).vPrint();
+    (c_tab_0 + c_tab_1).vPrint();
 
 
 }

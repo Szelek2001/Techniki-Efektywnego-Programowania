@@ -9,6 +9,7 @@ using namespace std;
 class CTable {
 public:
     void operator=(CTable &pcOther);
+
     CTable operator+(CTable &pcOther);
 
     CTable();
@@ -41,7 +42,9 @@ public:
     int getITableLength() const;
 
     void vPrint();
+
     void vSetValueAt(int iOffset, int iNewVal);
+
 private:
     string s_name;
     int i_table_length;
