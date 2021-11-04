@@ -8,9 +8,10 @@ using namespace std;
 
 class CTable {
 public:
-    void operator=(CTable &pcOther);
+    void operator=(const CTable &pcOther);
 
     CTable operator+(CTable &pcOther);
+    void operator++(int ADDED_VALUE);
 
     CTable();
 
@@ -22,6 +23,7 @@ public:
 
     static const string DEFAULT_NAME;
     static const int DEFAULT_LENGTH = 5;
+    const int ADDED_VALUE = 48;
 
     bool bSetNewSize(int iTableLen);
 
