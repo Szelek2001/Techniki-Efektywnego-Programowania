@@ -1,5 +1,5 @@
-#include "CNodeStatic.h"
-#include "CNodeDynamic.h"
+#include "CTreeStatic.h"
+#include "CTreeDynamic.h"
 
 void v_static_tree_test() {
     cout << "Operacje na wezle";

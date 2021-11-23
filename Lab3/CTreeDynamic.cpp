@@ -1,4 +1,4 @@
-#include "CNodeDynamic.h"
+#include "CTreeDynamic.h"
 
 // destruktor wezla
 CNodeDynamic::~CNodeDynamic() {

@@ -1,4 +1,4 @@
-#include "CNodeStatic.h"
+#include "CTreeStatic.h"
 
 using namespace std;
 
