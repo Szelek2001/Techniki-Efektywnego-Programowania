@@ -89,15 +89,18 @@ bool CTreeDynamic::bMoveSubtree(CNodeDynamic *pcParentNode, CNodeDynamic *pcNewC
         return false;
     }
 
-    for (int i = 0; i < pcNewChildNode->getParent()->iGetChildrenNumber(); i++) {
+
+    if(pcNewChildNode->getParent() != NULL)
+        for (int i = 0; i < pcNewChildNode->getParent()->iGetChildrenNumber(); i++) {
         if (pcNewChildNode->getParent()->pcGetChild(i) == pcNewChildNode) {
             pcNewChildNode->getParent()->deleteChild(i);
         }
     }
 
-    pcNewChildNode->vSetParent(pcParentNode);
-    pcParentNode->vAddChild(pcNewChildNode);
 
+    pcParentNode->vAddChild(pcNewChildNode);
+    pcNewChildNode->vSetParent(pcParentNode);
 
     return true;
+
 }
