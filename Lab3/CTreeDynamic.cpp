@@ -5,7 +5,6 @@ CNodeDynamic::~CNodeDynamic() {
     for (int i = 0; i < this->iGetChildrenNumber(); i++) {
         delete this->v_children[i];
     }
-    this->v_children.clear();
 }
 
 // metody wezla
@@ -52,6 +51,13 @@ CNodeDynamic *CNodeDynamic::pcGetRootFromNode() {
     }
 }
 
+void CNodeDynamic::vPrintUp() {
+    this->vPrint();
+    if (this->pc_parent_node != NULL) {
+        this->pc_parent_node->vPrintUp();
+    }
+}
+
 void CNodeDynamic::vPrintAllBelow() {
     this->vPrint();
     for (int i = 0; i < this->iGetChildrenNumber(); i++) {
@@ -88,14 +94,15 @@ bool CTreeDynamic::bMoveSubtree(CNodeDynamic *pcParentNode, CNodeDynamic *pcNewC
     if (pcParentNode->pcGetRootFromNode() == pcNewChildNode->pcGetRootFromNode()) {
         return false;
     }
+        if(pcNewChildNode->getParent()==NULL)
+            return false;
 
-
-    if(pcNewChildNode->getParent() != NULL)
+    if (pcNewChildNode->getParent() != NULL)
         for (int i = 0; i < pcNewChildNode->getParent()->iGetChildrenNumber(); i++) {
-        if (pcNewChildNode->getParent()->pcGetChild(i) == pcNewChildNode) {
-            pcNewChildNode->getParent()->deleteChild(i);
+            if (pcNewChildNode->getParent()->pcGetChild(i) == pcNewChildNode) {
+                pcNewChildNode->getParent()->deleteChild(i);
+            }
         }
-    }
 
 
     pcParentNode->vAddChild(pcNewChildNode);
@@ -103,4 +110,33 @@ bool CTreeDynamic::bMoveSubtree(CNodeDynamic *pcParentNode, CNodeDynamic *pcNewC
 
     return true;
 
+}
+
+void CTreeDynamic::printTreeInRows() {
+    queue < CNodeDynamic * > q;
+
+    int childrenInNextRow = 0, childrenToPrint = 1;
+
+    q.push(this->pc_root);
+
+
+    while (!q.empty()) {
+
+        CNodeDynamic *act = q.front();
+        q.pop();
+        act->vPrint();
+        childrenToPrint--;
+
+        for (int i = 0; i < act->iGetChildrenNumber(); i++) {
+            q.push(act->pcGetChild(i));
+        }
+
+        childrenInNextRow += act->iGetChildrenNumber();
+        if (childrenToPrint == 0) {
+            cout << "\n";
+            childrenToPrint = childrenInNextRow;
+            childrenInNextRow = 0;
+        }
+
+    }
 }

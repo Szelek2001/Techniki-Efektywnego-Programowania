@@ -39,6 +39,8 @@ public:
 
     vector<CNodeStatic> *getVChildren();
 
+    int getIVal() const;
+
 
 private:
     vector<CNodeStatic> v_children;

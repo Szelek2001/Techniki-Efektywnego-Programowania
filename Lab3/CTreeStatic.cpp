@@ -22,15 +22,13 @@ bool CTreeStatic::bMoveSubtree(CNodeStatic *pcParentNode, CNodeStatic *pcNewChil
     }
 
     pcParentNode->getVChildren()->push_back(*pcNewChildNode);
-    if(pcNewChildNode->getPcParentNode() !=NULL)
-    for (int i = 0; i < pcNewChildNode->getPcParentNode()->iGetChildrenNumber(); i++) {
-        if (pcNewChildNode->getPcParentNode()->pcGetChild(i) == pcNewChildNode) {
-            pcNewChildNode->getPcParentNode()->vDeleteChild(i);
+    if (pcNewChildNode->getPcParentNode() != NULL)
+        for (int i = 0; i < pcNewChildNode->getPcParentNode()->iGetChildrenNumber(); i++) {
+            if (pcNewChildNode->getPcParentNode()->pcGetChild(i) == pcNewChildNode) {
+                pcNewChildNode->getPcParentNode()->vDeleteChild(i);
+            }
         }
-    }
-
     pcParentNode->vUpdateParents();
-
 
     return true;
 }
@@ -100,4 +98,8 @@ CNodeStatic *CNodeStatic::pcGetRootFromNode() {
     } else {
         return this->getPcParentNode()->pcGetRootFromNode();
     }
+}
+
+int CNodeStatic::getIVal() const {
+    return i_val;
 }

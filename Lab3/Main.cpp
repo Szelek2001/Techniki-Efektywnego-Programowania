@@ -115,8 +115,15 @@ void v_subtree_dynamic_test() {
     cout << "\nDrzewo 1 przed operacja przenoszenia poddrzewa:\n";
     tree1.vPrintTree();
 
+    cout << "\nDrzewo 1 przed operacja przenoszenia poddrzewa:\n";
+
+    tree1.printTreeInRows();
+
     cout << "\nDrzewo 2 przed operacja przenoszenia poddrzewa:\n";
     tree2.vPrintTree();
+    cout << "\nDrzewo 2 przed operacja przenoszenia poddrzewa:\n";
+
+    tree2.printTreeInRows();
 
     tree1.bMoveSubtree(tree1.pcGetRoot()->pcGetChild(2), tree2.pcGetRoot()->pcGetChild(0));
 
@@ -125,6 +132,8 @@ void v_subtree_dynamic_test() {
 
     cout << "\nDrzewo 2 po operacji przenoszenia poddrzewa:\n";
     tree2.vPrintTree();
+    cout << "\n Po przepieciu all Up\n";
+    tree1.pcGetRoot()->pcGetChild(2)->pcGetChild(1)->vPrintUp();
 }
 
 void v_subtree_static_test() {
@@ -141,7 +150,7 @@ void v_subtree_static_test() {
     tree1.pcGetRoot()->pcGetChild(2)->vSetValue(3);
 
     tree1.pcGetRoot()->pcGetChild(2)->vAddNewChild();
-    tree1.pcGetRoot()->pcGetChild(2)->pcGetChild(0)->vSetValue(4);
+    tree1.pcGetRoot()->pcGetChild(2)->pcGetChild(0)->vSetValue(4);;
 
     CTreeStatic tree2;
 
@@ -175,7 +184,11 @@ void v_subtree_static_test() {
 
     cout << "\nDrzewo 2 po operacji przenoszenia poddrzewa:\n";
     tree2.vPrintTree();
+
+    cout << "\n Po przepieciu all Up\n";
+    tree1.pcGetRoot()->pcGetChild(2)->pcGetChild(1)->vPrintUp();
 }
+
 
 int main() {
     // TEST DRZEWA STATYCZNEGO
@@ -183,7 +196,9 @@ int main() {
     // TEST DRZEWA DYNAMICZNEGO
     //v_dynamic_tree_test();
     // TEST PRZENOSZENIA PODDRZEWA DRZEWA DYNAMICZNEGO
-    v_subtree_dynamic_test();
+    //v_subtree_dynamic_test();
+    cout << "\n";
+    cout << "\n";
     cout << "\n";
     v_subtree_static_test();
 }

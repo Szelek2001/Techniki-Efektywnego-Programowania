@@ -4,6 +4,7 @@ using namespace std;
 
 #include <iostream>
 #include <vector>
+#include <queue>
 
 class CTreeDynamic;
 
@@ -40,11 +41,14 @@ public:
 
     void vPrintAllBelow();
 
+    void vPrintUp();
+
 private:
     vector<CNodeDynamic *> v_children;
     CNodeDynamic *pc_parent_node;
     int i_val;
-};//class  CNodeDynamic 
+
+};//class  CNodeDynamic
 
 #endif
 
@@ -65,8 +69,12 @@ public:
 
     bool bMoveSubtree(CNodeDynamic *pcParentNode, CNodeDynamic *pcNewChildNode);
 
+    void printTreeInRows();
+
 private:
     CNodeDynamic *pc_root;
+
+
 };//class  CTreeDynamic
 
 #endif
