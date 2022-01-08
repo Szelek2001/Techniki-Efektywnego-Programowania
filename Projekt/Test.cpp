@@ -1,3 +1,4 @@
+
 //
 // Created by Rafał on 30.12.2021.
 //
@@ -7,6 +8,7 @@
 #include <unistd.h>
 #include <thread>
 #include "Max3SatProblem.h"
+#include "Optimizer.h"
 #include "Individual.h"
 #include "Random.h"
 

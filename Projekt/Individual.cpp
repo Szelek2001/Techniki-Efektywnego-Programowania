@@ -3,7 +3,7 @@
 //
 
 #include "Individual.h"
-#include <random>
+#include "Random.h"
 #include <iostream>
 
 using namespace std;
@@ -50,14 +50,12 @@ Individual* Individual::crossover(Individual* other, double crossoverProbability
 }
 
 void Individual::mutation(double mutationProbability) {
-    srand( time( NULL ) );
 
     // generujemy liczbe wartosci ktore zostana zamienione z true na false lub z false na true
     int numToMutate = floor(Random::generateRandomDouble(0.0, genotypeSize * mutationProbability + 1));
 
     for (int i = 0; i < numToMutate; i++) {
-
-        int indexToSwap = rand() % genotypeSize;
+            int indexToSwap = Random::generateRandomDouble(0, genotypeSize);
 
         // zmieniamy wartosc boolowska na przeciwna
         if (genotype[indexToSwap]) {
