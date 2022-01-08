@@ -5,9 +5,8 @@
 #include "Individual.h"
 #include <random>
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 
+using namespace std;
 
 void Individual::calculateFitness(int computed, int numberOfClauses) {
     this->fitness = static_cast< double > (computed) / static_cast< double > (numberOfClauses);
@@ -15,20 +14,13 @@ void Individual::calculateFitness(int computed, int numberOfClauses) {
 
 Individual* Individual::crossover(Individual* other, double crossoverProbability) {
 
-    // losowa liczba miedzy 0 a 1
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(0, 1);
+    double decision = Random::generateRandomDouble(0.0, 1.0);
 
-    double decision = dis(gen);
-
-    cout << decision << endl;
     if (decision < crossoverProbability) {
         // dokonujemy krzyzowania
 
         Individual* newInd = new Individual(this->genotypeSize);
-        int crossPoint = rand() % this->genotypeSize;
-        cout << "punkt krzyzowania: " << crossPoint << endl;
+        int crossPoint = Random::generateRandomDouble(0.0, this->genotypeSize);
         bool* crossedGenotype = new bool[this->genotypeSize];
 
         // czesc genotypu this od 0 do punktu krzyzowania
@@ -61,7 +53,7 @@ void Individual::mutation(double mutationProbability) {
     srand( time( NULL ) );
 
     // generujemy liczbe wartosci ktore zostana zamienione z true na false lub z false na true
-    int numToMutate = floor(static_cast< double > ( static_cast< double >(  rand() % (static_cast< int >(genotypeSize *mutationProbability) + 1))));
+    int numToMutate = floor(Random::generateRandomDouble(0.0, genotypeSize * mutationProbability + 1));
 
     for (int i = 0; i < numToMutate; i++) {
 
