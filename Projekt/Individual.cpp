@@ -29,7 +29,7 @@ Individual* Individual::crossover(Individual* other, double crossoverProbability
         }
 
         // czesc genotypu other od punktu krzyzowania do konca
-        for (int i = crossPoint; i < this->genotypeSize-1; ++i) {
+        for (int i = crossPoint; i < this->genotypeSize; ++i) {
             crossedGenotype[i] = other->genotype[i];
         }
 

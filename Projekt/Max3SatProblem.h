@@ -17,7 +17,7 @@ class Max3SatProblem {
 public:
     Max3SatProblem() { numberOfClauses = 0; };
 
-    ~Max3SatProblem() {};
+    ~Max3SatProblem() ;
 
     bool load(std::string sourcePath);
 

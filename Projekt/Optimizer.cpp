@@ -9,49 +9,50 @@ using namespace std;
 
 void Optimizer::initialize() {
     for (int i = 0; i < POPULATION_SIZE; ++i) {
-        Individual *newIndividual = new Individual(problem.getNumberOfVariables());
-        bool *newGenotype = new bool[problem.getNumberOfVariables()];
-        for (int k = 0; k < problem.getNumberOfVariables(); ++k) {
+        Individual* newIndividual = new Individual(problem->getNumberOfVariables());
+        bool* newGenotype = new bool[problem->getNumberOfVariables()];
+        for (int k = 0; k < problem->getNumberOfVariables(); ++k) {
             newGenotype[k] = Random::generateRandomBool();
         }
         newIndividual->setGenotype(newGenotype);
-        newIndividual->calculateFitness(problem.compute(newGenotype), problem.getNumberOfClauses());
+        newIndividual->calculateFitness(problem->compute(newGenotype), problem->getNumberOfClauses());
         population.push_back(newIndividual);
     }
+    bestFound = population.at(0);
     findBestSolution();
 }
 
 void Optimizer::runIteration() {
-    vector < Individual * > newPopulation;
+    vector < Individual* > newPopulation;
     while (newPopulation.size() < population.size()) {
-        Individual *parent1 = chooseParent();
-        Individual *parent2 = chooseParent();
-        Individual *child1 = parent1->crossover(parent2,CROSSOVER_PROBABILITY);
-        Individual *child2 = parent2->crossover(parent1,CROSSOVER_PROBABILITY);
+        Individual* parent1 = chooseParent();
+        Individual* parent2 = chooseParent();
+        Individual* child1 = parent1->crossover(parent2, CROSSOVER_PROBABILITY);
+        Individual* child2 = parent2->crossover(parent1, CROSSOVER_PROBABILITY);
         child1->mutation(MUTATION_PROBABILITY);
         child2->mutation(MUTATION_PROBABILITY);
         newPopulation.push_back(child1);
         newPopulation.push_back(child2);
     }
 
+
     population = newPopulation;
     for (int i = 0; i < population.size(); i++) {
-        population.at(i)->calculateFitness(problem.compute(population.at(i)->getGenotype()), problem.getNumberOfClauses());
+        population.at(i)->calculateFitness(problem->compute(population.at(i)->getGenotype()), problem->getNumberOfClauses());
     }
     findBestSolution();
 }
 
 void Optimizer::findBestSolution() {
-    bestFound = population.at(0);
-    for (int i = 1; i < population.size(); i++) {
+    for (int i = 0; i < population.size(); i++) {
         if (population.at(i)->getFitness() > bestFound->getFitness()) {
             bestFound = population.at(i);
         }
     }
 }
 
-Individual *Optimizer::chooseParent() {
-    vector <Individual *> tournament;
+Individual* Optimizer::chooseParent() {
+    vector <Individual*> tournament;
     //losowanie zawodników
     for (int i = 0; i < TOURNAMENT_SIZE; ++i) {
         int pickedIndex = Random::generateRandomInt(0, population.size());
@@ -59,24 +60,17 @@ Individual *Optimizer::chooseParent() {
     }
 
     //Wybor najlepszego osobnika
-    Individual * tournamentWinner = tournament.at(0);
+    Individual* tournamentWinner = tournament.at(0);
 
-    for (int i = 0; i < TOURNAMENT_SIZE; ++i){
-        if (tournamentWinner->getFitness() < tournament.at(i)->getFitness()){
+    for (int i = 0; i < TOURNAMENT_SIZE; ++i) {
+        if (tournamentWinner->getFitness() < tournament.at(i)->getFitness()) {
             tournamentWinner = tournament.at(i);
         }
     }
-    
+
     return tournamentWinner;
 }
 
-void Optimizer::crossoverAndFitness(Individual *individual1, Individual *individual2) {
-
-}
-
-void Optimizer::mutationAndFitness(Individual *individual1) {
-
-}
 
 void Optimizer::print() {
     for (int i = 0; i < population.size(); ++i) {
@@ -88,4 +82,13 @@ void Optimizer::print() {
     }
     cout << "Najlepszy osobnik: " << getBestFound()->getFitness();
 }
+void Optimizer::printbest() {
+
+
+    cout << "Najlepszy osobnik: " << getBestFound()->getFitness();}
+
+Optimizer::~Optimizer() {
+
+}
+
 

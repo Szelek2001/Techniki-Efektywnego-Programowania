@@ -114,6 +114,11 @@ int Max3SatProblem::compute(bool* solution)
     }
     return numOfFullfilledClauses;
 }
-
+Max3SatProblem::~Max3SatProblem()
+{
+    for (int i = 0; i < inputNumbers.size(); i++) {
+        delete inputNumbers[i];
+    }
+}
 
 
