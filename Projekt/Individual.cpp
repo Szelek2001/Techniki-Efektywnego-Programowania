@@ -2,14 +2,26 @@
 // Created by Rafał on 07.01.2022.
 //
 
+
 #include "Individual.h"
 #include "Random.h"
 #include <iostream>
 
 using namespace std;
 
+// konstruktor kopiujacy
+Individual::Individual(Individual& other) {
+    genotypeSize = other.genotypeSize;
+    fitness = other.fitness;
+    genotype = new bool[genotypeSize];
+
+    for (int i = 0; i < genotypeSize; i++) {
+        genotype[i] = other.genotype[i];
+    }
+}
+
 void Individual::calculateFitness(int computed, int numberOfClauses) {
-    this->fitness = static_cast< double > (computed) / static_cast< double > (numberOfClauses);
+    this->fitness = static_cast<double> (computed) / static_cast<double> (numberOfClauses);
 }
 
 Individual* Individual::crossover(Individual* other, double crossoverProbability) {
@@ -20,7 +32,7 @@ Individual* Individual::crossover(Individual* other, double crossoverProbability
         // dokonujemy krzyzowania
 
         Individual* newInd = new Individual(this->genotypeSize);
-        int crossPoint = Random::generateRandomDouble(0.0, this->genotypeSize);
+        int crossPoint = Random::generateRandomDouble(0.0, static_cast<double> (this->genotypeSize));
         bool* crossedGenotype = new bool[this->genotypeSize];
 
         // czesc genotypu this od 0 do punktu krzyzowania
@@ -39,12 +51,12 @@ Individual* Individual::crossover(Individual* other, double crossoverProbability
         // pamietac aby po dokonaniu krzyzowania, policzyc fitness
     }
     else {
-        // nie dokonujemy krzyzowania, zwracamy lepszego rodzica bez zmian
+        // nie dokonujemy krzyzowania, zwracamy lepszego rodzica bez zmian - tworzymy kopie przy pomocy konstruktora kopiujacego
         if (this->fitness > other->getFitness()) {
-            return this;
+            return new Individual(*this);
         }
         else {
-            return other;
+            return new Individual(*other);;
         }
     }
 }
@@ -55,12 +67,13 @@ void Individual::mutation(double mutationProbability) {
     int numToMutate = floor(Random::generateRandomDouble(0.0, genotypeSize * mutationProbability + 1));
 
     for (int i = 0; i < numToMutate; i++) {
-            int indexToSwap = Random::generateRandomDouble(0, genotypeSize);
+        int indexToSwap = Random::generateRandomDouble(0, genotypeSize);
 
         // zmieniamy wartosc boolowska na przeciwna
         if (genotype[indexToSwap]) {
             genotype[indexToSwap] = false;
-        } else {
+        }
+        else {
             genotype[indexToSwap] = true;
         }
     }

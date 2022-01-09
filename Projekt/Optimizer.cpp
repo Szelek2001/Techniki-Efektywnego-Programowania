@@ -7,6 +7,18 @@
 
 using namespace std;
 
+Optimizer::~Optimizer() {
+    delete bestFound;
+    // delete problem;
+    clearPopulation();
+}
+
+void Optimizer::clearPopulation() {
+    for (int i = 0; i < POPULATION_SIZE; i++) {
+        delete population[i];
+    }
+}
+
 void Optimizer::initialize() {
     for (int i = 0; i < POPULATION_SIZE; ++i) {
         Individual* newIndividual = new Individual(problem->getNumberOfVariables());
@@ -14,9 +26,11 @@ void Optimizer::initialize() {
         for (int k = 0; k < problem->getNumberOfVariables(); ++k) {
             newGenotype[k] = Random::generateRandomBool();
         }
+
         newIndividual->setGenotype(newGenotype);
         newIndividual->calculateFitness(problem->compute(newGenotype), problem->getNumberOfClauses());
         population.push_back(newIndividual);
+
     }
     bestFound = population.at(0);
     findBestSolution();
@@ -35,7 +49,7 @@ void Optimizer::runIteration() {
         newPopulation.push_back(child2);
     }
 
-
+    clearPopulation();
     population = newPopulation;
     for (int i = 0; i < population.size(); i++) {
         population.at(i)->calculateFitness(problem->compute(population.at(i)->getGenotype()), problem->getNumberOfClauses());
@@ -44,11 +58,17 @@ void Optimizer::runIteration() {
 }
 
 void Optimizer::findBestSolution() {
-    for (int i = 0; i < population.size(); i++) {
-        if (population.at(i)->getFitness() > bestFound->getFitness()) {
-            bestFound = population.at(i);
+    Individual* currentBest = bestFound;
+    double currentBestFitness = bestFound->getFitness();
+
+    for (int i = 1; i < population.size(); i++) {
+        if (population.at(i)->getFitness() > currentBestFitness) {
+            currentBest = population.at(i);
+            currentBestFitness = currentBest->getFitness();
         }
     }
+
+    bestFound = new Individual(*currentBest);
 }
 
 Individual* Optimizer::chooseParent() {
@@ -82,12 +102,9 @@ void Optimizer::print() {
     }
     cout << "Najlepszy osobnik: " << getBestFound()->getFitness();
 }
+
 void Optimizer::printbest() {
-
-
-    cout << "Najlepszy osobnik: " << getBestFound()->getFitness();}
-
-Optimizer::~Optimizer() {
+    cout<<getBestFound()->getFitness();
 
 }
 

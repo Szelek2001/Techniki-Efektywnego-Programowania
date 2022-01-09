@@ -10,6 +10,7 @@ class Individual {
 public:
     Individual(bool* newGenotype, int newGenotypeSize) { genotype = newGenotype; genotypeSize = newGenotypeSize; };
     Individual(int newGenotypeSize) { genotype = new bool[newGenotypeSize]; genotypeSize = newGenotypeSize; };
+    Individual(Individual& other);
 
     ~Individual() { delete[] genotype; };
 
@@ -24,7 +25,7 @@ public:
 
     void setGenotype(bool* newGenotype) { genotype = newGenotype; };
 private:
-    bool *genotype;
+    bool* genotype;
     int genotypeSize;
     double fitness;
 };
