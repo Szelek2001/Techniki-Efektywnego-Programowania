@@ -23,7 +23,9 @@ public:
     double getFitness() { return fitness; };
     bool* getGenotype() { return genotype; };
 
-    void setGenotype(bool* newGenotype) { genotype = newGenotype; };
+    void setGenotype(bool* newGenotype) {
+        delete genotype;
+        genotype = newGenotype; };
 private:
     bool* genotype;
     int genotypeSize;

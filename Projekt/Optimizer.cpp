@@ -9,7 +9,7 @@ using namespace std;
 
 Optimizer::~Optimizer() {
     delete bestFound;
-    // delete problem;
+    //delete problem;
     clearPopulation();
 }
 
@@ -32,7 +32,7 @@ void Optimizer::initialize() {
         population.push_back(newIndividual);
 
     }
-    bestFound = population.at(0);
+    bestFound =new Individual(*population.at(0));
     findBestSolution();
 }
 
@@ -58,17 +58,18 @@ void Optimizer::runIteration() {
 }
 
 void Optimizer::findBestSolution() {
-    Individual* currentBest = bestFound;
+
+
     double currentBestFitness = bestFound->getFitness();
 
     for (int i = 1; i < population.size(); i++) {
         if (population.at(i)->getFitness() > currentBestFitness) {
-            currentBest = population.at(i);
-            currentBestFitness = currentBest->getFitness();
+            delete bestFound;
+            bestFound = new Individual(*population.at(i));
+            currentBestFitness = bestFound->getFitness();
         }
     }
 
-    bestFound = new Individual(*currentBest);
 }
 
 Individual* Optimizer::chooseParent() {
